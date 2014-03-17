@@ -90,9 +90,9 @@ struct task_arg* mrb_value_to_task_arg(mrb_state *mrb, mrb_value v)
     case MRB_TT_STRING:
         {
             struct RString *str = mrb_str_ptr(v);
-            arg->value.string.len = str->len;
+            arg->value.string.len = str->as.heap.len;
             arg->value.string.ptr = mrb_malloc(mrb, arg->value.string.len+1);
-            memcpy(arg->value.string.ptr, str->ptr, arg->value.string.len+1);
+            memcpy(arg->value.string.ptr, str->as.heap.ptr, arg->value.string.len+1);
         }
         break;
 
